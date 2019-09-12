@@ -79,6 +79,9 @@ jobs:
       - run:
           name: Comprobar EB
           command: eb --version
+      - run:
+          name: Init project
+          command: eb init --platform docker --region eu-west-3  CircleCI-Books
       - run:    
           name: Deploy a EB
           command: eb deploy CircleciBooks-env-1 --region eu-west-3	
