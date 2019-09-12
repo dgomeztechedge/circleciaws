@@ -72,12 +72,20 @@ jobs:
           command: |
             pip install --upgrade setuptools
             pip install awsebcli --upgrade
+      - run: 
+          name: Test persistencia ficheros
+          command: touch cojones.txt
+
       - run:
           name: Comprobar EB
           command: eb --version
       - run:    
           name: Deploy a EB
           command: eb deploy CircleciBooks-env-1 --region eu-west-3	
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./*
       
 workflows:
   version: 2
