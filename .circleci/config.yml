@@ -76,7 +76,7 @@ jobs:
           command: eb --version
       - run:    
           name: Deploy a EB
-          command: eb deploy CircleciBooks-env --region eu-west-3	
+          command: eb deploy CircleciBooks-env-1 --region eu-west-3	
       
 workflows:
   version: 2
