@@ -39,7 +39,7 @@ import { AdminModule } from './hades-admin/admin.module';
         name: 'default',
         type: 'mysql' as 'mysql',
         port: 3306,
-        host: '172.17.0.1',
+        host: config.get('DATABASE_HOST'),
         username: config.get('DATABASE_USER'),
         password: config.get('DATABASE_PASSWORD'),
         database: config.get('DATABASE_SCHEMA'),
