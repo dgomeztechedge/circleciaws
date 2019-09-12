@@ -76,7 +76,7 @@ jobs:
           command: eb --version
       - run:    
           name: Deploy a EB
-          command: eb deploy --staged
+          command: eb deploy CircleCI-Books --region eu-west-3	
       
 workflows:
   version: 2
