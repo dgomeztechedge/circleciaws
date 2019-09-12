@@ -1,5 +1,4 @@
 {
-    "AWSEBDockerrunVersion": 2,
     "Image": {
         "Name": "node:10"
     },
