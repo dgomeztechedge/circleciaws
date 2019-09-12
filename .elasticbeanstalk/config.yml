@@ -1,0 +1,7 @@
+branch-defaults:
+  master:
+    environment: $CIRCLE_BRANCH-my-application
+global:
+  application_name: CircleCI-Books
+  default_ec2_keyname: CircleCIKeyPair
+  sc: git

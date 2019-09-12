@@ -1,8 +1,0 @@
-runtime: custom
-env: flex
-automatic_scaling:
-  min_num_instances: 1
-network:
-  session_affinity: true   
-beta_settings:
-  cloud_sql_instances: techedge-es-bp-dyn-dsup-dev:europe-west1:books=tcp:3306

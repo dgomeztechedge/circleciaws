@@ -7,7 +7,7 @@ version: 2.1
 executors:
   my-executor:
     docker:
-      - image: lakoo/node-gcloud-docker
+      - image: nikolaik/python-nodejs
     working_directory: /tmp/books
 
 jobs:
@@ -20,10 +20,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      # - run: curl -sL https://deb.nodesource.com/setup_6.x | bash -
-      # - run: apt-get install -y nodejs
 
       - run: apk --no-cache add --virtual builds-deps build-base python
       - run: npm install
@@ -33,6 +30,9 @@ jobs:
       - run:    
           name: Recodificar a archivo
           command: base64 production.txt -d > production.env
+      - run:    
+          name: Build
+          command: npm run build
       - run: ls
       - save_cache:
           paths:
@@ -64,23 +64,18 @@ jobs:
       - attach_workspace:
           at: /tmp/books
       - run:
-          name: Comprobar versión GCloud
-          command: gcloud -v
+          name: Comprobar Pip
+          command: pip --version
+      - run:
+          name: Instalar EB CLI
+          command: pip install awsebcli --upgrade --user
+      - run:
+          name: Comprobar EB
+          command: eb --version
       - run:    
-          name: Conseguir clave json
-          command: echo $ACCOUNT_KEY_STAGING > service_key.txt
-      - run:    
-          name: Recodificar a archivo
-          command: base64 service_key.txt -d > gcloud-service-key.json
-      - run:    
-          name: Autentificarse
-          command: gcloud auth activate-service-account --key-file ./gcloud-service-key.json
-      - run:    
-          name: Seleccionar proyecto
-          command: gcloud config set project $PROJECT_ID
-      - run:    
-          name: Deploy a App Engine
-          command: gcloud -q app deploy
+          name: Deploy a EB
+          command: eb deploy CircleCI-Books
+      
 workflows:
   version: 2
   build_and_test: # name of your workflow
