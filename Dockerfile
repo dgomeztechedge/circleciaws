@@ -1,8 +1,6 @@
-FROM node:10
+FROM gcr.io/google-appengine/nodejs	
 EXPOSE 8080
-WORKDIR /usr/src/app
-COPY . .
+COPY . /app/
 RUN npm install
 RUN npm run build
-RUN ls
 ENTRYPOINT npm run start:prod
