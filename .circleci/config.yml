@@ -66,8 +66,11 @@ jobs:
           name: Comprobar Pip
           command: pip --version
       - run:
-          name: Instalar EB CLI
-          command: pip install awsebcli --upgrade --user
+          name: Installing deployment dependencies
+          working_directory: /
+          command: |
+            sudo pip install --upgrade setuptools
+            sudo pip install awsebcli --upgrade
       - run:
           name: Comprobar EB
           command: eb --version
