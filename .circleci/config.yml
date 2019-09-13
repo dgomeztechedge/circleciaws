@@ -62,7 +62,6 @@ jobs:
     steps:     
       - attach_workspace:
           at: /tmp/books
-      - run: ls
       - run:
           name: Comprobar Pip
           command: pip --version
@@ -72,10 +71,6 @@ jobs:
           command: |
             pip install --upgrade setuptools
             pip install awsebcli --upgrade
-      - run: 
-          name: Test persistencia ficheros
-          command: touch cojones.txt
-
       - run:
           name: Comprobar EB
           command: eb --version
