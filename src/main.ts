@@ -8,8 +8,8 @@ async function bootstrap()
 
     // set swagger config
     const options = new DocumentBuilder()
-        .setTitle('Books example')
-        .setDescription('The books API description')
+        .setTitle('Ejemplico -  example')
+        .setDescription('Api de libros!!!!!!!!!!!!!!')
         .setVersion('1.0')
         .build();
     const document = SwaggerModule.createDocument(app, options);
