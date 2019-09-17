@@ -10,7 +10,7 @@ async function bootstrap()
     const options = new DocumentBuilder()
         .setTitle('Ejemplico -  example')
         .setDescription('Api de libros!!!!!!!!!!!!!!')
-        .setVersion('1.0')
+        .setVersion('3.0')
         .build();
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('api', app, document);
