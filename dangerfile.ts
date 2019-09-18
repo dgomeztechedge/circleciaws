@@ -43,7 +43,7 @@ async function checkLiveDocumentation(modifiedFiles) {
   let diffFile;
   let currentContent;
 
-  for (let file of modifiedFiles) {
+  for (const file of modifiedFiles) {
     if (file.indexOf('dangerfile') < 0 && file.match(validJSFile)) {
       diffFile = await danger.git.diffForFile(file);
       currentContent = diffFile.after;
@@ -70,7 +70,7 @@ async function checkBranch(response) {
 
   if (!validBranchName.test(branch.name)) {
     fails.push(
-      "I don't understand the reason to be of this PR. Have you read the rules to name the branches of the PR?",
+      'I don\'t understand the reason to be of this PR. Have you read the rules to name the branches of the PR?',
     );
   }
 }
@@ -85,7 +85,7 @@ Stop right there, criminal scum, you’ve violated the law, pay the court of fin
 
 if (danger.github.pr.body.length === 0) {
   fails.push(
-    "This pull request deserves some description to be clear, Don't you think?",
+    'This pull request deserves some description to be clear, Don\'t you think?',
   );
 }
 
