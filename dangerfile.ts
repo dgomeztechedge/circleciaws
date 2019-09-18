@@ -31,7 +31,7 @@ async function finalJudgment(fails) {
       }
     }, 'This pull request is not worth for a superior race: ');
     fail(msg);
-    gifs('Gif!');
+    gifs();
   } else {
     message(`Congrats this pull request is a proud for you and all your race`);
   }
