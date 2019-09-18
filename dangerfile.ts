@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import { message, danger, fail } from 'danger';
-import gifs from 'danger-plugin-gifs';
 
 const owner = process.env.CIRCLE_PROJECT_USERNAME;
 const repoName = process.env.CIRCLE_PROJECT_REPONAME;
@@ -31,7 +30,6 @@ async function finalJudgment(fails) {
       }
     }, 'This pull request is not worth for a superior race: ');
     fail(msg);
-    gifs();
   } else {
     message(`Congrats this pull request is a proud for you and all your race`);
   }
