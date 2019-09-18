@@ -10,7 +10,6 @@ const validJSFile = /\.js$/g;
 const validComent = /\/\*\*.*(function)?.*\*\/\n(async )?function/s;
 const leng = danger.github.commits.length;
 const lastCommit = danger.github.commits[leng - 1];
-const lengModfiedFiles = danger.git.modified_files.length;
 // const reviewersCount = danger.github.requested_reviewers.users.length
 
 /**
