@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 import { message, danger, fail } from 'danger';
 
-const owner = process.env.GITHUB_OWNER || 'ardiadrianadri';
-const repoName = process.env.GITHUB_REPO || 'danger-poc';
+const owner = process.env.CIRCLE_PROJECT_USERNAME;
+const repoName = process.env.CIRCLE_PROJECT_REPONAME;
 const fails = [];
 const validBranchName = /^(feature|bugfix|refactor|hotfix)\/.*$/g;
 const validGithubIssue = /issue #[0-9]{1,5}/gm;
