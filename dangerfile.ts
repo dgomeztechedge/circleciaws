@@ -76,10 +76,7 @@ async function checkBranch(response) {
 }
 
 message(`
-Hello:
-I am DevVox3000, the bot that came from the future to make sure that your pull request has the standard of
-a superior race.
-I'm going to inspect your work to make sure your RP has what it needs to have ... so be a good developer and wait quietly while you watch as the expert works.
+Stop right there, criminal scum, you’ve violated the law, pay the court of fine or serve your sentence, your stolen code is now forfeit!
 `);
 
 /* if (reviewersCount <= 0) {
