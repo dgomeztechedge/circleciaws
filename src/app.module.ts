@@ -1,3 +1,5 @@
+import { AuthModule } from './auth/auth.module';
+import { LoginController } from './hades-admin/login/login.controller';
 import { ConfigModule } from './config/config.module';
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -17,6 +19,7 @@ import { BookResolver } from './book/graphql/book.resolver';
 import { ConfigService } from './config/config.service';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { AdminModule } from './hades-admin/admin.module';
+import { AuthService } from './hades-admin/auth/auth.service';
 
 // graphql
 
@@ -51,14 +54,16 @@ import { AdminModule } from './hades-admin/admin.module';
     }),
     TypeOrmModule.forFeature([Author, Book, Reader]),
     AdminModule,
+    AuthModule,
+    LoginModule,
   ],
-  controllers: [AuthorController, BookController, ReaderController],
+  controllers: [AuthorController, BookController, ReaderController, LoginController],
   providers: [
     ConfigModule,
     AuthorService,
     BookService,
     ReaderService,
-
+    AuthService,
     // resolvers
     AuthorResolver,
     BookResolver,

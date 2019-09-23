@@ -3,8 +3,9 @@ import { message, danger, fail } from 'danger';
 
 const owner = process.env.CIRCLE_PROJECT_USERNAME;
 const repoName = process.env.CIRCLE_PROJECT_REPONAME;
+const username = process.env.CIRCLE_USERNAME;
 const fails = [];
-const validBranchName = /^(feature|bugfix|refactor|hotfix)\/.*$/g;
+const validBranchName = /^(feature|bugfix|refactor|hotfix|fix)(\/|-).*$/g;
 const validGithubIssue = /issue #[0-9]{1,5}/gm;
 const validJSFile = /\.js$/g;
 const validComent = /\/\*\*.*(function)?.*\*\/\n(async )?function/s;
@@ -27,10 +28,12 @@ async function finalJudgment(fails) {
       } else {
         return `${current} ${next},`;
       }
-    }, 'This pull request is not worth for a superior race: ');
+    },'Jules, ¿has oído la filosofía de que cuando un hombre admite que se ha equivocado de inmediato se le perdonan todos sus pecados? ¿Habías oído eso?: ');
     fail(msg);
   } else {
-    message(`Congrats this pull request is a proud for you and all your race`);
+    message(
+      `Joder ${username}, este codigo es una pasada tío, Vincent y yo nos hubiéramos conformado con cualquier codigo de Stack Overflow verdad? y va y nos saca este auténtico codigo de gourmet sin dudarlo.`,
+    );
   }
 }
 
@@ -69,13 +72,13 @@ async function checkBranch(response) {
 
   if (!validBranchName.test(branch.name)) {
     fails.push(
-      'I don\'t understand the reason to be of this PR. Have you read the rules to name the branches of the PR?',
+      'Esta rama tiene un nombre que no sigue las normas, siguiente',
     );
   }
 }
 
 message(`
-Stop right there, criminal scum, you’ve violated the law, pay the court of fine or serve your sentence, your stolen code is now forfeit!
+Hola, soy el Señor Lobo. Soluciono problemas.
 `);
 
 /* if (reviewersCount <= 0) {
@@ -84,13 +87,13 @@ Stop right there, criminal scum, you’ve violated the law, pay the court of fin
 
 if (danger.github.pr.body.length === 0) {
   fails.push(
-    'This pull request deserves some description to be clear, Don\'t you think?',
+    'Has mandado el Pull Request vacio, ¿qué quieres conseguir con este request?',
   );
 }
 
 if (!validGithubIssue.test(danger.github.pr.body)) {
   fails.push(
-    'This pull request is not related with any github issue. Are you sure that you are working in something that worth?',
+    'Este pull request no está asociado a ningún issue. Estás trabajando en algo importante?',
   );
 }
 

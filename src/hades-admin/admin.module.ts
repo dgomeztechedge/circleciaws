@@ -9,22 +9,15 @@ import { jwtConstants } from './auth/constants';
 import { UserService } from './users/user.service';
 
 @Module({
-    imports: [
-        PassportModule,
-        JwtModule.register({
-            secret: jwtConstants.secret,
-            signOptions: { expiresIn: '60s' },
-        }),
-    ],
-    controllers: [
-        LoginController
-    ],
-    providers: [
-        AuthService, 
-        LocalStrategy,
-        JwtStrategy,
-        UserService
-    ],
-    exports: [AuthService],
+  imports: [
+    PassportModule,
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '60s' },
+    }),
+  ],
+  controllers: [LoginController],
+  providers: [AuthService, LocalStrategy, JwtStrategy, UserService],
+  exports: [AuthService],
 })
 export class AdminModule {}
