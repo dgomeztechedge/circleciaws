@@ -25,10 +25,10 @@ describe('AuthorController', () =>
             ],
             providers: [
                 AuthorService,
-                {
-                    provide: getRepositoryToken(Author),
-                    useValue: mockRepository
-                },
+                // {
+                //     provide: getRepositoryToken(Author),
+                //     useValue: mockRepository
+                // },
                 {
                     provide: getRepositoryToken(Book),
                     useValue: mockRepository

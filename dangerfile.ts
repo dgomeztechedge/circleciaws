@@ -3,14 +3,14 @@ import { message, danger, fail } from 'danger';
 
 const owner = process.env.CIRCLE_PROJECT_USERNAME;
 const repoName = process.env.CIRCLE_PROJECT_REPONAME;
+const username = process.env.CIRCLE_USERNAME;
 const fails = [];
-const validBranchName = /^(feature|bugfix|refactor|hotfix)\/.*$/g;
+const validBranchName = /^(feature|bugfix|refactor|hotfix|fix)(\/|-).*$/g;
 const validGithubIssue = /issue #[0-9]{1,5}/gm;
 const validJSFile = /\.js$/g;
 const validComent = /\/\*\*.*(function)?.*\*\/\n(async )?function/s;
 const leng = danger.github.commits.length;
 const lastCommit = danger.github.commits[leng - 1];
-const lengModfiedFiles = danger.git.modified_files.length;
 // const reviewersCount = danger.github.requested_reviewers.users.length
 
 /**
@@ -28,10 +28,12 @@ async function finalJudgment(fails) {
       } else {
         return `${current} ${next},`;
       }
-    }, 'This pull request is not worth for a superior race: ');
+    },'Jules, ¿has oído la filosofía de que cuando un hombre admite que se ha equivocado de inmediato se le perdonan todos sus pecados? ¿Habías oído eso?: ');
     fail(msg);
   } else {
-    message(`Congrats this pull request is a proud for you and all your race`);
+    message(
+      `Joder ${username}, este codigo es una pasada tío, Vincent y yo nos hubiéramos conformado con cualquier codigo de Stack Overflow verdad? y va y nos saca este auténtico codigo de gourmet sin dudarlo.`,
+    );
   }
 }
 
@@ -43,7 +45,7 @@ async function checkLiveDocumentation(modifiedFiles) {
   let diffFile;
   let currentContent;
 
-  for (let file of modifiedFiles) {
+  for (const file of modifiedFiles) {
     if (file.indexOf('dangerfile') < 0 && file.match(validJSFile)) {
       diffFile = await danger.git.diffForFile(file);
       currentContent = diffFile.after;
@@ -70,16 +72,13 @@ async function checkBranch(response) {
 
   if (!validBranchName.test(branch.name)) {
     fails.push(
-      "I don't understand the reason to be of this PR. Have you read the rules to name the branches of the PR?",
+      'Esta rama tiene un nombre que no sigue las normas, siguiente',
     );
   }
 }
 
 message(`
-Hello:
-I am DevVox3000, the bot that came from the future to make sure that your pull request has the standard of
-a superior race.
-I'm going to inspect your work to make sure your RP has what it needs to have ... so be a good developer and wait quietly while you watch as the expert works.
+Hola, soy el Señor Lobo. Soluciono problemas.
 `);
 
 /* if (reviewersCount <= 0) {
@@ -88,13 +87,13 @@ I'm going to inspect your work to make sure your RP has what it needs to have ..
 
 if (danger.github.pr.body.length === 0) {
   fails.push(
-    "This pull request deserves some description to be clear, Don't you think?",
+    'Has mandado el Pull Request vacio, ¿qué quieres conseguir con este request?',
   );
 }
 
 if (!validGithubIssue.test(danger.github.pr.body)) {
   fails.push(
-    'This pull request is not related with any github issue. Are you sure that you are working in something that worth?',
+    'Este pull request no está asociado a ningún issue. Estás trabajando en algo importante?',
   );
 }
 
